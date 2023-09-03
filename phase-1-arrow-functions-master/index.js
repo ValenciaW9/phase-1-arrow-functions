@@ -84,7 +84,10 @@ console.log(finishedItems);
 
 lapsedUserAccounts.forEach(u => sendBillTo(u.address));
 //Oer we mighjt use Map in billing  software:
-\
+
+
+
+
 
 
 

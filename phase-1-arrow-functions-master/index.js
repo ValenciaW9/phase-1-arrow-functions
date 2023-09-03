@@ -1,15 +1,15 @@
 const foo = function() {
-  // Function body
+  // function body
 };
 
-const sum = 1 + 1; // Evaluate the expression 1 + 1, returning 2, and assign it to the variable sum.
+const sum1 = 1 + 1; // Evaluate the expression 1 + 1, returning 2, and assign it to the variable sum1.
 const difference = 10 - 1; // Evaluate the expression 10 - 1, returning 9, and assign it to the variable difference.
 
 const bar = function() {
   return 'bar';
 }; // Evaluate the expression function() { return 'bar'; }, returning a function that can be called, and assign it to the variable bar.
 
-console.log(sum);
+console.log(sum1);
 console.log(difference);
 console.log(bar());
 
@@ -31,13 +31,13 @@ const twoAdder = x => x + 2; // This is the same as
 
 const add = (parameter1, parameter2) => parameter1 + parameter2;
 
-const sum = (parameter1, parameter2) => {
+const sum2 = (parameter1, parameter2) => {
   console.log(`Adding ${parameter1}`);
   console.log(`Adding ${parameter2}`);
   return parameter1 + parameter2;
 };
 
-console.log(sum(1, 2));
+console.log(sum2(1, 2));
 
 // Describe Situations Where Arrow Functions Are Used
 // Arrow functions are often used in JavaScript's iteration methods. An iterator is a method that allows you to deal with a set of data one at a time. For example, if you had a group of students' essays, you could only grade them one at a time.
@@ -61,8 +61,4 @@ console.log(finishedItems);
 lapsedUserAccounts.forEach(u => sendBillTo(u.address));
 
 // Or we might use Map in billing software:
-
-
-
-
 

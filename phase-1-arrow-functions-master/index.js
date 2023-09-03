@@ -1,21 +1,21 @@
-function foo() {
+function foo(); {
     return 'bar';
 }
 
 const foo = function() {...ActiveXObject}  //=> to the right of the assignment operator (=) is called a function expression.
 
-const sum = 1 +1
+const sum = 1 + 1
 
 //Ealuate the expression 1+1 , returning 2, and assign it to the variable sum.
 const difference = 10 - 1;
 
 //Evaluate the expression 10-1, returning 9, and assign it to the variable difference.
-const foo = function() {
+const foo = function(); {
     return 'bar';
 }
 
 ///Evaluate the expression 10-1 , returning 9, and assign it to the variable difference.
-const foo = function() {
+const foo = function(); {
     return 'bar';
 }
 
@@ -36,7 +36,7 @@ const add = (parameter1, parameter 2) => paramenter 1 + parameter 2; add(2,3);//
 //There are a couple of things to be ware of in the code above: first note that if the function body consists of a single expression, we no longer need to wrap it in curly braces. Secound , when there are no braces, arrow functions have an implicit reutn, i.e, Secound,, when there are no braces, arrow functions have an implicit return, i.e, they automatically return the result of the last expression! This is the only situation in which a  JavaScript function desn't require explicit return with the return keyword.
 //to the left of the +> , you see the parameters that are defined for the function. This looks similar to what we would have done with a function declaration: list the parameters, seperated by commas, inside of ().
 //if your arrow function has only one paramenter, the (_ around the parameter becomes optional: 
-const twoAdder= x => x + 2 ;
+const two Adder= x => x + 2 ;
 // is the same as 
 const two Adder = (x) => x + 2;
 
@@ -63,5 +63,8 @@ finishedItems = overdueTodoItems.map(  item => item.className  = "complete");
 Headers.innerText = `You finished ${Items.length} items!`; 
 //Oer we mighjt use Map in billing  software:
 lapsedUserAccounts.map( u => sendBillTo(u.address) );
+
+
+
 
 

@@ -13,9 +13,6 @@ const foo = function() {
   console.log(sum);
   console.log(difference);
   console.log(bar());
-  
-
-
 
 //Ealuate the expression 1+1 , returning 2, and assign it to the variable sum.
 
@@ -88,8 +85,6 @@ console.log(finishedItems);
 lapsedUserAccounts.forEach(u => sendBillTo(u.address));
 //Oer we mighjt use Map in billing  software:
 \
-
-
 
 
 

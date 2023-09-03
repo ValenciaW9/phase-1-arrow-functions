@@ -22,11 +22,11 @@ const foo = function() {
 
 //Evaluate the expression 10-1, returning 9, and assign it to the variable difference.
 
-}
+
 
 ///Evaluate the expression 10-1 , returning 9, and assign it to the variable difference.
 
-}
+
 
 //Evaluate the expression function() {return 'bar} , returning a thing that can be called , and assign it to the variable foo.
 // We've learneed that the function expression (again, the thing to the right of =) is known nas an anonymous function. It doen't have a  name associated with it like you see in a function declaration.

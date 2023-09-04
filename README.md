@@ -1,262 +1,215 @@
-# First-Class Functions
+# Arrow Functions
 
 ## Learning Goals
 
-- Define "first-class function"
-- Use inline functions
-- Use functions as return values
-- Define "higher-order function"
+- Review declaring a function using a function expression
+- Declare a function using arrow syntax
+- Describe situations where arrow functions are used
 
 ## Introduction
 
-Sometimes in life, we need to take a first step. Since life isn't scripted like
-a reality TV show, anything can happen after that initial step. We need to be
-able to adjust accordingly.
+The original style for defining functions in JavaScript is the _function
+declaration_. But JavaScript has two other ways to write functions: the
+_function expression_ and the _arrow function expression_ (often simply
+called an _arrow function_). In this lesson, we will start by briefly
+reviewing function expressions, then we will learn how to write functions
+using _arrow syntax_.
 
-Imagine an exercise routine: every morning, we run 5 miles. But afterwards —
-depending on the day — we might lift weights, go for a swim, or run an extra 5
-miles.
+## Getting Started
 
-In programming-speak, we could write out a function for every day (follow along
-by writing out these examples in a REPL, or in the `index.js` file!):
+If you haven't already, fork and clone this lab into your local environment.
+Remember to **fork** a copy into your GitHub account first, then **clone** from
+that copy. Navigate into its directory in the terminal, then run `code .` to
+open the files in Visual Studio Code.
+
+## Review: Declare a Function Using a Function Expression
+
+The first method we learned for defining a function is the _function
+declaration_:
 
 ```js
-function Monday() {
-  console.log("Go for a five-mile run");
-  console.log("Pump iron");
-}
-
-function Tuesday() {
-  console.log("Go for a five-mile run");
-  console.log("Swim 40 laps");
-}
-
-function Wednesday() {
-  console.log("Go for a five-mile run");
-  console.log("Go for a five-mile run");
-}
-
-function Thursday() {
-  console.log("Go for a five-mile run");
-  console.log("Pump iron");
-}
-
-function Friday() {
-  console.log("Go for a five-mile run");
-  console.log("Swim 40 laps");
+function foo() {
+  return 'bar';
 }
 ```
 
-But that's pretty tedious. And we already know that functions are supposed to
-help us _reduce_ this kind of repetition.
-
-What if we pull all of our five-mile runs into their own function?
+But, as we've learned, a function can also be written as follows:
 
 ```js
-function runFiveMiles() {
-  console.log("Go for a five-mile run");
+const foo = function() {
+  return 'bar';
 }
 ```
 
-Okay, that cuts down _slightly_ on how much code we need to write. Let's do the
-same thing for lifting weights and swimming:
+The `function() {...}` to the right of the assignment operator (`=`) is called a
+_function expression_. The best way to understand function expressions is by
+analogy.
 
 ```js
-function liftWeights() {
-  console.log("Pump iron");
-}
-
-function swimFortyLaps() {
-  console.log("Swim 40 laps");
-}
+const sum = 1 + 1
 ```
 
-Awesome! We've cut down a little bit more: `Monday()` could now look like:
+Evaluate the expression `1 + 1`, returning `2`, and assign it to the variable
+`sum`.
 
 ```js
-function Monday() {
-  runFiveMiles();
-  liftWeights();
-}
+const difference = 10 - 1;
 ```
 
-While it is a tiny bit shorter than before, there is definitely still room for
-improvement. We know that every day, our routine includes two activities. We
-also know that the first activity is always a run. That means that the second
-activity can be variable. What if we created a function that took the second
-activity as a parameter?
+Evaluate the expression `10 - 1`, returning `9`, and assign it to the variable
+`difference`.
 
 ```js
-function exerciseRoutine(postRunActivity) {
-  runFiveMiles();
-  postRunActivity();
+const foo = function() {
+  return 'bar';
 }
 ```
 
-Notice that, in `exerciseRoutine()`, the `postRunActivity` parameter is a
-_callback function_ — we call it after we call `runFiveMiles()`. Now let's try
-to use this new function we created in our `Monday()` function:
+Evaluate the expression `function() { return 'bar' }`, returning a thing that
+can be called, and assign it to the variable `foo`.
+
+We've also learned that the function expression (again, the thing to the right
+of `=`) is known as an _anonymous function_. It doesn't have a name associated
+with it like you see in a _function declaration_.
+
+However, when we assign an anonymous function to a variable, we have a name that
+points to a callable thing. We can call this anonymous function by invoking
+`foo()`. That anonymous function is now, for all practical purposes, named
+`foo`.
+
+There are a few subtle differences between _function declarations_ and _function
+expressions_, but they are very minute. Neither is really better than the other.
+Over time, conventions have evolved in the JavaScript programming community for
+when to use one vs. the other; you will develop a sense for these as you
+continue to learn JavaScript. Ultimately, however, you are free to use whichever
+one you prefer.
+
+## Declare a Function Using An Arrow Function
+
+The arrow syntax builds on the syntax of the function expression and provides a
+shorthand way to declare functions that doesn't require using the `function`
+keyword. In fact, in cases where the function body consists of one line of code,
+we can define it in a single line:
 
 ```js
-function Monday() {
-  exerciseRoutine(liftWeights);
+const add = (parameter1, parameter2) => parameter1 + parameter2;
+add(2,3); //=> 5
+```
+
+Here, we're declaring a variable `add` and assigning an _anonymous function_ as
+its value. Let's look to the right of the `=`:
+
+```js
+(parameter1, parameter2) => parameter1 + parameter2;
+// Parameter list ^^^^^   // Function Body ^^^^^^^^
+```
+
+This is a very short function body! It adds `parameter1` and `parameter2`.
+
+There are a couple of things to be aware of in the code above: first, note that
+if the function body consists of a single expression, we no longer need to wrap
+it in curly braces. Second, **when there are no braces, arrow functions have an
+_implicit_ return**, i.e., they _automatically_ return the result of the last
+expression! **This is the only situation in which a JavaScript function doesn't
+require _explicit return_ with the `return` keyword.**
+
+To the left of the `=>`, you see the parameters that are defined for the
+function. This looks similar to what we would have done with a function
+declaration: list the parameters, separated by commas, inside of `()`.
+
+If your arrow function has only one parameter, the `()` around the parameter
+becomes optional:
+
+```js
+const twoAdder = x => x + 2;
+// is the same as
+const twoAdder = (x) => x + 2;
+```
+
+Almost all developers will drop the parentheses in this case.
+
+If we need to do more work than return a single expression, we'll need `{}` to
+wrap the multiple lines of code, **and** we'll have to declare a `return`. That
+sweet no-`return` syntax is only available if your function body is one
+expression long.
+
+```js
+const sum = (parameter1, parameter2) => {
+  console.log(`Adding ${parameter1}`);
+  console.log(`Adding ${parameter2}`);
+  return parameter1 + parameter2;
 }
-
-function exerciseRoutine(postRunActivity) {
-  runFiveMiles();
-  postRunActivity();
-}
+sum(1,2); //=> 3
 ```
 
-Note that we aren't _calling_ `liftWeights`. When we want to pass a function as
-a value, we pass it by _reference_ by omitting the parentheses at the end of the
-function. We're not running the function at this point. It's up to
-`exerciseRoutine()` to call the function when it is needed.
+## Describe Situations Where Arrow Functions Are Used
 
-If we call `Monday()`, we'll see that we run five miles, and then we lift
-weights — awesome!
+Arrow functions are often used in JavaScript's _iterator_ methods. An iterator
+is a method that allows you to deal with a set of data one at a time. For
+example, if you had a group of students' essays, you could only grade them one
+at a time.
 
-## Define First-Class Functions
+In addition to looping constructs such as `for`, JavaScript includes a number of
+_advanced iterators_; we'll learn about these later in this section. For now, to
+see an example of how arrow functions are used in these methods, we'll preview
+JavaScript's `.map()` method.
 
-Functions in JavaScript are **first-class objects**, which means they can be
-treated like any other object: they can be assigned to a variable, passed as
-values to other functions, returned as the value from another function, etc.
-They're super useful, as you can see — they even help us exercise in the
-mornings!
-
-> Note that we stated above that JavaScript functions can be treated like any
-> _other_ object. In JavaScript, functions are a special type of object!
-
-## Inline Functions
-
-What if, though, we want to have a one-off day of Pilates in our exercise
-routine? Keep in mind that our `exerciseRoutine()` function requires a function
-as its first (and only) parameter. However, that function doesn't have to be
-defined beforehand! We can pass an _anonymous function_ to `exerciseRoutine()`.
-
-To start with, let's use the full function syntax we've come to know and love:
+The `.map()` method is called on an `Array` and takes a function as an argument.
+It iterates through the array, passing each element in turn to the function. It
+then takes that function's return value and adds it to a new array, leaving the
+original array unchanged. That new array, containing the modified elements, is
+returned at the end after all iterations are complete.
 
 ```js
-exerciseRoutine(function () {
-  console.log("Stretch! Work that core!");
-});
-
-// "Go for a five-mile run"
-// "Stretch! Work that core!"
+const nums = [1,2,3];
+const squares = nums.map(x => x ** 2); 
+squares; //=> [1,4,9]
+nums; //=> [1,2,3]
 ```
 
-We can rewrite this to be more concise by using an arrow function:
+Note that the argument being passed to `map` above is an arrow function! In each
+iteration through the `nums` array, `map` passes the value of the current
+element to the arrow function as an argument and it is assigned to the parameter
+`x`. That value is then squared and stored in a new array. After `map` has
+iterated through all of the elements, it returns the new array containing the
+squared values.
+
+If all this math stuff seems a bit too textbook-y, be reassured that we can
+iterate through anything, not just numbers. In the following example, we can
+imagine that `overdueTodoItems` is a collection of DOM elements:
 
 ```js
-exerciseRoutine(() => {
-  console.log("Stretch! Work that core!");
-});
-
-// Or even shorter:
-exerciseRoutine(() => console.log("Stretch! Work that core!"));
+finishedItems = overdueTodoItems.map( item => item.className = "complete" );
+header.innerText = `You finished ${finishedItems.length} items!`;
 ```
 
-Because we only need to use our function this one time, there's no need to give
-it a name or assign it to a variable. Instead, we define it inline as an
-anonymous function, passing it as the argument when we call `exerciseRoutine()`.
-
-## Returning Functions
-
-Functions can also return other functions. This is useful when we want to
-package up a function and its environment, but don't want to call it _just yet_.
-
-For example, let's say our morning routine involves drinking a cup of coffee,
-exercising immediately, and then at some point later (depending on how we feel),
-eating breakfast. What we'll have for breakfast depends on what kind of exercise
-we're doing.
-
-Let's translate this to a function:
+Or we might use `map` in billing software:
 
 ```js
-function morningRoutine(exercise) {
-  let breakfast;
-
-  if (exercise === liftWeights) {
-    breakfast = "protein bar";
-  } else if (exercise === swimFortyLaps) {
-    breakfast = "kale smoothie";
-  } else {
-    breakfast = "granola";
-  }
-
-  exerciseRoutine(exercise);
-
-  // we could give this function a name if we wanted to, but since
-  // it's only available _inside_ morningRoutine(), we don't need to
-  return function () {
-    console.log(`Nom nom nom, this ${breakfast} is delicious!`);
-  };
-}
+lapsedUserAccounts.map( u => sendBillTo(u.address) );
 ```
 
-Now when we call `morningRoutine()`, our exercise routine will be logged as
-before, but we'll also get a function back:
-
-```js
-const afterExercise = morningRoutine(liftWeights);
-// LOG: Go for a five-mile run
-// LOG: Pump iron
-
-afterExercise;
-//=> ƒ () { console.log(`Nom nom nom, this ${breakfast} is delicious!`); }
-```
-
-And we can call that function later:
-
-```js
-afterExercise();
-// LOG: Nom nom nom, this protein bar is delicious!
-```
-
-If you haven't been following along, it's vitally important that you go back and
-do so. First-class functions are one of JavaScript's most powerful features, but
-it takes some practice for them to sink in.
-
-## Higher-Order Functions
-
-A higher-order function is a function that can accept functions as arguments
-and/or return a function. You can read more about them [here][FCC HoF]
-and [here][Dmitri Pavlutin HoF].
+Don't worry if you don't completely follow everything that goes on here — we
+will cover advanced iterators in detail later in this section.
 
 ## Instructions
 
-If you haven't already, **fork and clone** this lab into your local environment.
-Navigate into its directory in the terminal, then run `code .` to open the files
-in Visual Studio Code.
+You are going to write several methods. Write your code in the `index.js` file.
+Let the tests guide you through the process. Once the tests are passing,
+remember to commit and push your changes up to GitHub, then submit your work to
+Canvas using CodeGrade.
 
-To get more practice with first-class functions, this lesson has three tests to
-pass that require you to write the following functions in the `index.js` file:
+## Conclusion
 
-- The `receivesAFunction` function should:
-
-  - take a _callback function_ as an argument
-  - call the callback function
-  - it doesn't matter what this function returns, so long as it calls the
-    callback function
-
-- The `returnsANamedFunction` function should:
-
-  - take no arguments
-  - return a _named function_
-
-- The `returnsAnAnonymousFunction` function should:
-  - take no arguments
-  - return an _anonymous function_
-
-When you're done, remember to commit and push your changes up to GitHub, then
-submit your work to Canvas using CodeGrade.
+In this lesson you saw two different styles for declaring functions: function
+expressions and arrow functions. Neither is "better" than the standard function
+declaration we've been using. Arrow functions excel when a simple change or
+operation needs to be used repeatedly. But they're certainly used to write long,
+complex functions too! As you continue through the course, you'll see all three
+methods used to write functions, and develop a feel for when to use each.
 
 ## Resources
 
-- [Wikipedia: First-class function](https://en.wikipedia.org/wiki/First-class_function)
-- [FreeCodeCamp: A Quick Intro to Higher-Order Functions in JavaScript][FCC HoF]
-- [Dmitri Pavlutin: What are Higher-Order Functions in JavaScript?][Dmitri Pavlutin HoF]
-- [MDN Function Expression (named vs anonymous functions)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function)
+- [MDN: Arrow Functions][Arrow functions]
 
-[FCC HoF]: https://www.freecodecamp.org/news/a-quick-intro-to-higher-order-functions-in-javascript-1a014f89c6b/
-[Dmitri Pavlutin HoF]: https://dmitripavlutin.com/javascript-higher-order-functions
+[Arrow functions]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions

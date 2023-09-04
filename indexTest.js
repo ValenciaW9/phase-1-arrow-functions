@@ -1,49 +1,32 @@
 require ( './helpers.js' );
 
-const chai = require("chai");
-const spies = require("chai-spies");
-chai.use(spies);
+describe("index.js", () => {
+  it("has a function expression called divide", () => {
+    expect(divide).to.exist
+  })
 
-describe("index", () => {
-  describe("receivesAFunction(callback)", () => {
-    it("receives a function and calls it", () => {
-      const spy = chai.spy();
+  it("divide divides 2000 by 100", () => {
+    let a = 2000
+    let b = 100
+    expect(divide(a,b)).to.equal(a/b)
+  })
 
-      receivesAFunction(spy);
+  it("has an arrow function called square", () => {
+    expect(square).to.exist
+  })
 
-      expect(spy).to.have.been.called();
-    });
-  });
+  it("square arrow function takes one parameter and multiplies it times itself", () => {
+    let x = 2
+    expect(square(x)).to.equal(4)
+  })
 
-  describe("returnsANamedFunction()", () => {
-    var fn;
+  it("has an arrow function called add", () => {
+    expect(add).to.exist
+  })
 
-    before(() => {
-      fn = returnsANamedFunction();
-    });
-
-    it("returns a function", () => {
-      expect(fn).to.be.a("function");
-    });
-
-    it("returns a named function", () => {
-      expect(fn.name).not.to.eql("");
-    });
-  });
-
-  describe("returnsAnAnonymousFunction()", () => {
-    var fn;
-
-    before(() => {
-      fn = returnsAnAnonymousFunction();
-    });
-
-    it("returns a function", () => {
-      expect(fn).to.be.a("function");
-    });
-
-    it("returns an anonymous function", () => {
-      expect(fn.name).to.eql("");
-    });
-  });
-});
+  it("add arrow function takes two parameters and adds them together", () => {
+    let a = 3
+    let b = 4
+    expect(add(a,b)).to.equal(a+b)
+  })
+})

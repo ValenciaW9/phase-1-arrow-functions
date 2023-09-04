@@ -1,4 +1,14 @@
-// index.js
+  const foo = function() {
+    // function body
+  };
+  
+  const sum1 = 1 + 1; // Evaluate the expression 1 + 1, returning 2, and assign it to the variable sum1.
+  const difference = 10 - 1; // Evaluate the expression 10 - 1, returning 9, and assign it to the variable difference.
+  
+  const bar = function() {
+    return 'bar';
+
+    };
 
 // Define the divide function
 const divide = (a, b) => {
@@ -21,16 +31,7 @@ const divide = (a, b) => {
   module.exports = { divide, square, add };
   
 
-const foo = function() {
-    // function body
-  };
-  
-  const sum1 = 1 + 1; // Evaluate the expression 1 + 1, returning 2, and assign it to the variable sum1.
-  const difference = 10 - 1; // Evaluate the expression 10 - 1, returning 9, and assign it to the variable difference.
-  
-  const bar = function() {
-    return 'bar';
-  }; // Evaluate the expression function() { return 'bar'; }, returning a function that can be called, and assign it to the variable bar.
+   // Evaluate the expression function() { return 'bar'; }, returning a function that can be called, and assign it to the variable bar.
   
   console.log(sum1);
   console.log(difference);

@@ -1,32 +1,49 @@
 require ( './helpers.js' );
 
-const chai = require('chai')
-const expect = chai.expect;
+const chai = require("chai");
+const spies = require("chai-spies");
+chai.use(spies);
 
-describe('index.js', function() {
-  describe('multiply', function() {
-    it("is an equation whose multiplied results will equal 62", function() {
-      expect(num1).to.be.a('number')
-      expect(num2).to.be.a('number')
-      expect(multiply).to.eq(62)
+describe("index", () => {
+  describe("receivesAFunction(callback)", () => {
+    it("receives a function and calls it", () => {
+      const spy = chai.spy();
+
+      receivesAFunction(spy);
+
+      expect(spy).to.have.been.called();
     });
   });
-  describe('random', function() {
-    it("generates a random integer greater than 0", function() {
-      expect(Number.isInteger(random)).to.be.true
-      expect(random).to.not.eq(0)
+
+  describe("returnsANamedFunction()", () => {
+    var fn;
+
+    before(() => {
+      fn = returnsANamedFunction();
+    });
+
+    it("returns a function", () => {
+      expect(fn).to.be.a("function");
+    });
+
+    it("returns a named function", () => {
+      expect(fn.name).not.to.eql("");
     });
   });
-  describe('mod', function() {
-    it("is an equation that calculates a remainder that is equal to 4", function() {
-      expect(num3).to.be.a('number')
-      expect(num4).to.be.a('number')
-      expect(mod).to.eq(4)
+
+  describe("returnsAnAnonymousFunction()", () => {
+    var fn;
+
+    before(() => {
+      fn = returnsAnAnonymousFunction();
     });
-  });
-  describe('max', function() {
-    it("will return 20 as the highest number in the set", function() {
-      expect(max).to.eq(20)
+
+    it("returns a function", () => {
+      expect(fn).to.be.a("function");
+    });
+
+    it("returns an anonymous function", () => {
+      expect(fn.name).to.eql("");
     });
   });
 });
